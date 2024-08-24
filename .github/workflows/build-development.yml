@@ -24,7 +24,9 @@ jobs:
       - name: Build and push Backend Docker image
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ./backend
           file: ./backend/development.Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_REGISTRY_USERNAME }}/test-repository:development
+          cache-to: type=gha,mode=max
+          cache-from: type=gha
