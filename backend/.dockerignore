@@ -1,0 +1,14 @@
+/build
+/node_modules
+.env
+
+.dockerignore
+
+.vscode/
+.idea/
+
+tmp/
+.cache
+
+*.py
+README.md
