@@ -1,0 +1,6 @@
+/backend/node_modules
+/backend/build
+/backend/config.toml
+/backend/.env
+
+/postgres_data
