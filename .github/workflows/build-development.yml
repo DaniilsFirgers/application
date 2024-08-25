@@ -27,7 +27,7 @@ jobs:
           context: ./backend
           file: ./backend/dev.node.Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_REGISTRY_USERNAME }}/test-repository:development
+          tags: ${{ secrets.DOCKER_REGISTRY_USERNAME }}/node-web:development
           cache-to: type=gha,mode=max
           cache-from: type=gha
 
@@ -37,6 +37,6 @@ jobs:
           context: ./backend
           file: ./backend/dev.postgres.Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_REGISTRY_USERNAME }}/postgres:development
+          tags: ${{ secrets.DOCKER_REGISTRY_USERNAME }}/postgres-web:development
           cache-to: type=gha,mode=max
           cache-from: type=gha
