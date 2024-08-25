@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: daniilsfirgers/test-repository:development
+    image: daniilsfirgers/node-web:development
     ports:
       - "3000:3000"
     volumes:
@@ -13,13 +13,9 @@ services:
           condition: service_healthy
 
   postgres:
-    image: postgres:13
+    image: daniilsfirgers/postgres-web:development
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: supersecret
-      POSTGRES_DB: main
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U admin -d main"]
       interval: 10s
@@ -28,7 +24,6 @@ services:
     restart: always
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
-      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   postgres_data:
