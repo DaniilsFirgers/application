@@ -21,12 +21,22 @@ jobs:
           username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
           password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
-      - name: Build and push Backend Docker image
+      - name: Build and push Node Backend Docker image
         uses: docker/build-push-action@v3
         with:
           context: ./backend
-          file: ./backend/development.Dockerfile
+          file: ./backend/dev.node.Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_REGISTRY_USERNAME }}/test-repository:development
+          cache-to: type=gha,mode=max
+          cache-from: type=gha
+
+      - name: Build and push Postgres Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: ./backend
+          file: ./backend/dev.postgres.Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_REGISTRY_USERNAME }}/postgres:development
           cache-to: type=gha,mode=max
           cache-from: type=gha
