@@ -3,4 +3,6 @@
 /backend/config.toml
 /backend/.env
 
+/frontend/node_modules
+
 /postgres_data
