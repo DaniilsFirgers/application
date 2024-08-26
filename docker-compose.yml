@@ -11,6 +11,12 @@ services:
     depends_on:
         postgres:
           condition: service_healthy
+    links:
+      - "postgres:main_db"
+    networks:
+      custom-web:
+        ipv4_address: 10.0.0.1
+    dns: [8.8.8.8]
 
   postgres:
     image: daniilsfirgers/postgres-web:development
@@ -24,6 +30,20 @@ services:
     restart: always
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      custom-web:
+        ipv4_address: 10.0.0.2
+    dns: [8.8.8.8]
+    
+    
 
 volumes:
   postgres_data:
+
+networks:
+  custom-web:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/24
